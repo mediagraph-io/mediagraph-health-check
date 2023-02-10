@@ -1,5 +1,6 @@
 env:
   RUBY_VERSION: 3.0.2
+  production_health_check_fail_cmd: ${{ secrets.PRODUCTION_HEALTH_CHECK_FAIL_CMD }}
 
 name: Production Health Check
 on:

@@ -16,7 +16,7 @@ RSpec.feature 'Production Uptime Check', type: :system do
     expect(page).to have_content(/Sign Up/)
     expect(page).to have_content(/Forgot Password/)
 
-    # expect(page).to have_content 'fail test'
+    expect(page).to have_content 'fail test'
   end
 end
 

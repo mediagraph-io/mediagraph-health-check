@@ -1,0 +1,31 @@
+env:
+  RUBY_VERSION: 3.0.2
+
+name: Production Health Check
+on:
+  repository_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+
+jobs:
+  production_health_check:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16.16.0'
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ env.RUBY_VERSION }}
+          bundler-cache: true
+
+      - uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles( '.ruby-version' ) }}-${{ hashFiles('**/Gemfile.lock') }}-v2
+
+      - name: 'Run Check'
+        run: ruby production_health_check.rb

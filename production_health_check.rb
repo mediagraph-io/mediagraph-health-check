@@ -22,4 +22,6 @@ end
 
 if RSpec::Core::Runner.run([]) == 1
   exec ENV.fetch('production_health_check_fail_cmd', 'echo "mediagraph.io down"')
+
+  raise 'failed'
 end

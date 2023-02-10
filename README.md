@@ -1,5 +1,4 @@
 # MediaGraph Health Check 
----
 
 [![Production Health Check](https://github.com/mediagraph-io/mediagraph-health-check/actions/workflows/production_health_check.yml/badge.svg)](https://github.com/mediagraph-io/mediagraph-health-check/actions/workflows/production_health_check.yml)
 

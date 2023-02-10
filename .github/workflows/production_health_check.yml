@@ -29,4 +29,4 @@ jobs:
           key: ${{ runner.os }}-gems-${{ hashFiles( '.ruby-version' ) }}-${{ hashFiles('**/Gemfile.lock') }}-v2
 
       - name: 'Run Check'
-        run: ruby production_health_check.rb
+        run: bundle exec ruby production_health_check.rb

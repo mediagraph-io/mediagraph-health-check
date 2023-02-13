@@ -20,8 +20,19 @@ RSpec.feature 'Production Uptime Check', type: :system do
   end
 end
 
-if RSpec::Core::Runner.run([]) == 1
-  exec ENV.fetch('production_health_check_fail_cmd', 'echo "mediagraph.io down"')
+retries = 0
+loop do
+  if RSpec::Core::Runner.run([]) == 1
+    retries += 1
 
-  raise 'failed'
+    if retries > 5
+      exec ENV.fetch('production_health_check_fail_cmd', 'echo "mediagraph.io down"')
+
+      raise 'failed'
+    end
+
+    sleep 5
+  else
+    break
+  end
 end
